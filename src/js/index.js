@@ -30,7 +30,7 @@ function inputIn(event) {
   event.preventDefault();
   galerryList.innerHTML = '';
   if (!loadBtn.classList.contains('is-hidden')) {
-    loadBtn.classList.toggle('is-hidden');
+    loadBtn.classList.add('is-hidden');
   }
   const current = event.target.value.trim();
   searchString = current;
@@ -52,8 +52,8 @@ function renderPhotos(event) {
   fetchPtotos(searchString, page, imagesPerPage)
     .then(data => {
       //   console.log(data);
-      if (data.total > 0) {
-        loadBtn.classList.toggle('is-hidden');
+      if (data.totalHits > 0) {
+        loadBtn.classList.remove('is-hidden');
         renderGalerry(data.hits);
       } else {
         Notify.warning(
